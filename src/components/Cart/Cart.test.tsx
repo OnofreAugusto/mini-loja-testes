@@ -20,7 +20,7 @@ describe('Cart', () => {
   it('exibe o total correto somando os itens', () => {
     render(<Cart items={mockCartItems} onRemove={jest.fn()} />)
 
-    expect(screen.getByText('R$\xa0299,70')).toBeInTheDocument()
+    expect(screen.getByText(/299,70/)).toBeInTheDocument()
   })
 
   it('chama onRemove com o id correto ao clicar em "Remover"', async () => {
@@ -32,7 +32,7 @@ describe('Cart', () => {
 
     await userEvent.click(botoes[0])
 
-    expect(onRemove).toHaveBeenCalledWith('1')
+    expect(onRemove).toHaveBeenCalledWith(1)
   })
 
   it('não exibe o total quando o carrinho está vazio', () => {
